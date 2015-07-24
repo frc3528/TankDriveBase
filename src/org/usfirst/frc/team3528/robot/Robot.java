@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team3528.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
@@ -11,8 +13,9 @@ import edu.wpi.first.wpilibj.Timer;
 public class Robot extends SampleRobot {
     
 	
-	Solenoid high;
-	Solenoid low;
+	DoubleSolenoid high;
+	
+	Compressor compressor;
 	
 	RobotDrive myRobot;
    
@@ -32,8 +35,11 @@ public class Robot extends SampleRobot {
     }
     
     public void robotInit() {
-    	high = new Solenoid(1);
-    	low = new Solenoid(2);
+    	high = new DoubleSolenoid(1, 2);
+    	
+    	compressor = new Compressor(1);
+    	
+    	compressor.setClosedLoopControl(true);
     	
     	frontLeft = new Talon(1);
     	frontRight = new Talon(0);
@@ -68,19 +74,15 @@ public class Robot extends SampleRobot {
             
             
             if(stick.getRawButton(7) == true) {
-            	high.set(true);
-            	low.set(false);
-            } else {
-            	high.free();
-            	low.free();
+            	System.out.println("Button 7 true.");
+            	high.set(DoubleSolenoid.Value.kForward);
+            	Timer.delay(0.05);
             }
             
             if(stick.getRawButton(8) == true) {
-            	high.set(false);
-            	low.set(true);
-            } else {
-            	high.free();
-            	low.free();
+            	System.out.println("Button 8 true");
+            	high.set(DoubleSolenoid.Value.kReverse);
+            	Timer.delay(0.05);
             }
             
             
