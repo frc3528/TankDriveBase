@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class Robot extends SampleRobot {
     
 	
-	DoubleSolenoid high;
+	DoubleSolenoid shifter;
 	
 	Compressor compressor;
 	
@@ -35,7 +35,7 @@ public class Robot extends SampleRobot {
     }
     
     public void robotInit() {
-    	high = new DoubleSolenoid(1, 1, 2);
+    	shifter = new DoubleSolenoid(1, 1, 2);
     	
     	compressor = new Compressor(1);
     	
@@ -75,12 +75,12 @@ public class Robot extends SampleRobot {
             
             if(stick.getRawButton(7) == true) {
             	System.out.println("Button 7 true.");
-            	high.set(DoubleSolenoid.Value.kForward);
+            	shifter.set(DoubleSolenoid.Value.kForward);
             }
             
             if(stick.getRawButton(8) == true) {
             	System.out.println("Button 8 true");
-            	high.set(DoubleSolenoid.Value.kReverse);
+            	shifter.set(DoubleSolenoid.Value.kReverse);
             }
             
             Timer.delay(0.005);
