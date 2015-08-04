@@ -46,7 +46,7 @@ public class Robot extends SampleRobot {
     	backLeft = new Talon(3);
     	backRight = new Talon(2);
     	
-    	myRobot = new RobotDrive(frontLeft, frontRight, backLeft, backRight);
+    	myRobot = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
         myRobot.setExpiration(0.1);
         
         stick = new Joystick(0);  
@@ -62,9 +62,6 @@ public class Robot extends SampleRobot {
     public void operatorControl() {
         myRobot.setSafetyEnabled(false);
         
-        leftPower = stick.getRawAxis(1);
-        rightPower = stick.getRawAxis(5);
-        
         while (isOperatorControl() && isEnabled()) {
             
             leftPower = stick.getRawAxis(1);
@@ -74,12 +71,12 @@ public class Robot extends SampleRobot {
             
             
             if(stick.getRawButton(7) == true) {
-            	System.out.println("Button 7 true.");
+            	//System.out.println("Button 7 true.");
             	shifter.set(DoubleSolenoid.Value.kForward);
             }
             
             if(stick.getRawButton(8) == true) {
-            	System.out.println("Button 8 true");
+            	//System.out.println("Button 8 true");
             	shifter.set(DoubleSolenoid.Value.kReverse);
             }
             
